@@ -74,5 +74,6 @@
         <module>bean-validation</module>
         <module>cdi</module>
         <module>jax-rs</module>
+        <module>json-p</module>
     </modules>
 </project>
