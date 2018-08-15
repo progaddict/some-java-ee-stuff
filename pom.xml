@@ -75,5 +75,6 @@
         <module>cdi</module>
         <module>jax-rs</module>
         <module>json-p</module>
+        <module>json-b</module>
     </modules>
 </project>
