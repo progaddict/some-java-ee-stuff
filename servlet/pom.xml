@@ -15,6 +15,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <tomcat.port>8443</tomcat.port>
     </properties>
 
     <dependencies>
@@ -23,4 +24,33 @@
             <artifactId>javaee-api</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.26.1</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <alias>http2-servlet</alias>
+                            <name>http2-servlet</name>
+                            <build>
+                                <dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
+                                <assembly>
+                                    <descriptorRef>rootWar</descriptorRef>
+                                </assembly>
+                            </build>
+                            <run>
+                                <ports>
+                                    <port>tomcat.port:8443</port>
+                                </ports>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
