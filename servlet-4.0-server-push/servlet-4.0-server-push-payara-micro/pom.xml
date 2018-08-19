@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.somejavaeestuff</groupId>
+        <artifactId>servlet-4.0-server-push</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>servlet-4.0-server-push-payara-micro</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <https.port>8443</https.port>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.somejavaeestuff</groupId>
+            <artifactId>servlet-4.0-server-push-app</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.26.1</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <alias>http2-servlet-payara-micro</alias>
+                            <name>http2-servlet-payara-micro</name>
+                            <build>
+                                <dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
+                                <assembly>
+                                    <inline>
+                                        <dependencySets>
+                                            <dependencySet>
+                                                <includes>
+                                                    <include>com.somejavaeestuff:servlet-4.0-server-push-app</include>
+                                                </includes>
+                                                <outputDirectory>.</outputDirectory>
+                                                <outputFileNameMapping>ROOT.war</outputFileNameMapping>
+                                            </dependencySet>
+                                        </dependencySets>
+                                    </inline>
+                                </assembly>
+                            </build>
+                            <run>
+                                <ports>
+                                    <port>https.port:8181</port>
+                                </ports>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>docker-build</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

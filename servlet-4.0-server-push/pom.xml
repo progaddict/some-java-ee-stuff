@@ -15,6 +15,7 @@
     <modules>
         <module>servlet-4.0-server-push-app</module>
         <module>servlet-4.0-server-push-tomcat</module>
+        <module>servlet-4.0-server-push-payara-micro</module>
     </modules>
 
 </project>
