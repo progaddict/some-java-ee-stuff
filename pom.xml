@@ -76,6 +76,6 @@
         <module>jax-rs</module>
         <module>json-p</module>
         <module>json-b</module>
-        <module>servlet</module>
+        <module>servlet-4.0-server-push</module>
     </modules>
 </project>
