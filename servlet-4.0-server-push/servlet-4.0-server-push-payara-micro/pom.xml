@@ -23,6 +23,11 @@
             <version>1.0-SNAPSHOT</version>
             <type>war</type>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.grizzly</groupId>
+            <artifactId>grizzly-npn-bootstrap</artifactId>
+            <version>1.8</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -47,6 +52,13 @@
                                                 </includes>
                                                 <outputDirectory>.</outputDirectory>
                                                 <outputFileNameMapping>ROOT.war</outputFileNameMapping>
+                                            </dependencySet>
+                                            <dependencySet>
+                                                <includes>
+                                                    <include>org.glassfish.grizzly:grizzly-npn-bootstrap</include>
+                                                </includes>
+                                                <outputDirectory>.</outputDirectory>
+                                                <outputFileNameMapping>grizzly-npn-bootstrap.jar</outputFileNameMapping>
                                             </dependencySet>
                                         </dependencySets>
                                     </inline>
