@@ -77,5 +77,6 @@
         <module>json-p</module>
         <module>json-b</module>
         <module>servlet-4.0-server-push</module>
+        <module>security-api</module>
     </modules>
 </project>
